@@ -44,6 +44,11 @@
   width:150px;
   border-radius:10px;
   border:none;
+  cursor:pointer;
+}
+
+.button-style:hover{
+  background-color:gray;
 }
 
 .button-container{
@@ -53,7 +58,6 @@
 .current-button-style{
   margin-right: 10px;
 }
-
 .city-name{
   font-size:35px;
   color: rgb(94, 155, 246);
@@ -64,4 +68,13 @@
 }
 .description-style{
   color:rgb(55, 54, 54);
+}
+.warning{
+  background-color:gray;
+  padding:10px;
+  margin-right: 10px;
+  width:150px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
 }

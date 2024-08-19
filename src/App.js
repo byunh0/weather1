@@ -26,7 +26,6 @@ const getCurrentLocation=()=>{
   
   });
 }
-
 //많이 (여러모로) 쓸 정보 정리해두기
 const getCurrentLocationWeather=async(lat,long)=>{
   let url=`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=5187ebbfd48666717271535c3df7f946&units=metric`
@@ -42,10 +41,12 @@ const getCurrentLocationWeather=async(lat,long)=>{
 
 const getAnoterCityWeather=async()=>{
   let url=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=5187ebbfd48666717271535c3df7f946&units=metric`
- 
+  setLoading(true)
   let waitapi =await fetch(url)
   let data = await waitapi.json()
-  return setWeather(data)
+  setWeather(data)
+ 
+  setLoading(false)
  
  
 }
@@ -53,6 +54,14 @@ useEffect(()=>{
   if(city==""){ getCurrentLocation()}
   else {getAnoterCityWeather()}
 },[city])
+
+const currentLoction=(item)=>{
+  if (item === "current") {
+    getCurrentLocation();
+  } else {
+    setCity(item);
+  }
+}
   return (
     <div>
     {loading ? (<div className="bigContainer"><ClipLoader color ="#f88c6b" loading={loading} size={70}/></div>): 
@@ -60,7 +69,7 @@ useEffect(()=>{
     <div>
      <WeatherBox weather={weather}/>
     </div>
-    <ButtonStyle cities={cities} setCity={setCity}/>
+    <ButtonStyle cities={cities}  currentLoction={currentLoction}/>
   </div>)
   }
   </div>
