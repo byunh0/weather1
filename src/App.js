@@ -63,7 +63,7 @@ const currentLoction=(item)=>{
   }
 }
   return (
-    <div>
+    <div >
     {loading ? (<div className="bigContainer"><ClipLoader color ="#f88c6b" loading={loading} size={70}/></div>): 
      (<div  className="bigContainer">
     <div>
