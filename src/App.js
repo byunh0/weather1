@@ -17,6 +17,7 @@ const [weather,setWeather]=useState(null);
 const cities=["Seoul","JEJU","Italia","Hawai"]
 const [city,setCity]=useState("")
 const [loading,setLoading]=useState(false)
+const [clickevent,setClickEvent]=useState("")
 const getCurrentLocation=()=>{
   navigator.geolocation.getCurrentPosition((position) => {
     const lat = position.coords.latitude;
@@ -58,10 +59,15 @@ useEffect(()=>{
 const currentLoction=(item)=>{
   if (item === "current") {
     getCurrentLocation();
+    setClickEvent("current")
+
   } else {
     setCity(item);
+    setClickEvent(item)
   }
 }
+
+
   return (
     <div >
     {loading ? (<div className="bigContainer"><ClipLoader color ="#f88c6b" loading={loading} size={70}/></div>): 
@@ -69,7 +75,7 @@ const currentLoction=(item)=>{
     <div>
      <WeatherBox weather={weather}/>
     </div>
-    <ButtonStyle cities={cities}  currentLoction={currentLoction}/>
+    <ButtonStyle cities={cities}  currentLoction={currentLoction} clickevent={clickevent}/>
   </div>)
   }
   </div>

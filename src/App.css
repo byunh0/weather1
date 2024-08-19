@@ -47,9 +47,7 @@
   cursor:pointer;
 }
 
-.button-style:hover{
-  background-color:gray;
-}
+
 
 .button-container{
   padding:10px;
@@ -76,6 +74,16 @@
   width:150px;
   border-radius:10px;
   border:none;
+  cursor:pointer;
+}
+
+.warning-style{
+  background-color:black;
+  padding:10px;
+  margin-right: 10px;
+  width:150px;
+  border-radius:10px;
+ 
   cursor:pointer;
 }
 
