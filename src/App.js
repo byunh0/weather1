@@ -25,17 +25,31 @@ const getCurrentLocation=()=>{
    console.log("현재 위치",lat,long)//위치정보를 알려줌.
    getCurrentLocationWeather(lat,long)
   
-  });
-}
+  },
+  (error) => {
+    console.error("위치 정보 가져오기 실패", error); 
+    setLoading(false); 
+  }
+);
+};
 //많이 (여러모로) 쓸 정보 정리해두기
 const getCurrentLocationWeather=async(lat,long)=>{
   let url=`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=5187ebbfd48666717271535c3df7f946&units=metric`
   setLoading(true)
-  let response = await fetch(url)
-  let data = await response.json()
-  console.log("data",data)
-  setWeather(data)
-  setLoading(false)
+  try{
+    const response = await fetch(url);
+    if(!response.ok){
+      throw new Error('네트워크 상태를 확인하세요')
+    }
+    const data = await response.json();
+    console.log("data",data);
+    setWeather(data);
+  } catch(error){
+    console.error("날씨 데이터 출력 실패", error);
+  }finally{
+    setLoading(false);
+  }
+
 }
 
 
@@ -43,13 +57,19 @@ const getCurrentLocationWeather=async(lat,long)=>{
 const getAnoterCityWeather=async()=>{
   let url=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=5187ebbfd48666717271535c3df7f946&units=metric`
   setLoading(true)
-  let waitapi =await fetch(url)
-  let data = await waitapi.json()
-  setWeather(data)
- 
-  setLoading(false)
- 
- 
+  try{
+    const waitapi =await fetch(url);
+    if (!waitapi.ok) {
+      throw new Error('네트워크 상태를 확인하세요'); 
+    }
+    
+    const data = await waitapi.json()
+    setWeather(data)
+  }catch(error){
+    console.error("도시 날씨 데이터 출력 실패", error);
+  }finally{
+    setLoading(false)
+  }
 }
 useEffect(()=>{
   if(city==""){ getCurrentLocation()}
