@@ -87,9 +87,49 @@
   cursor:pointer;
 }
 
-@media (max-size:600px){
+@media (max-width:768px){
  .bigContainer{
-  max-width:90%
+ min-width:300px;
+ width:100%;
+ }
+ .weatherBox-container{
+  min-width:300px;
+  width:90%;
+  height:300px;
  }
 
+ .city-name{
+  font-size:25px;
+ }
+
+ .cdo-box{
+  margin-bottom:5px;
+  margin-top:10px;
+ }
+ .do-style{
+  font-size:30px
+ }
+ .description-style{
+  font-size:15px;
+ }
+
+ .button-container{
+ 
+ }
+
+ .current-button-style{
+  width:82px;
+  height:42px;
+  font-size:small
+ }
+.button-style{
+  width:80px;
+  height:40px;
+  font-size:15px;
+}
+.warning{
+  width:80px;
+  height:40px;
+  font-size:15px;
+}
 }
